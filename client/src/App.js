@@ -1,8 +1,18 @@
+import Card from './components/Body/Card';
+import ClientForm from './components/Forms/ClientForm';
+import DriverForm from './components/Forms/DriverForm';
+import Header from './components/Header/Header'
 
 function App() {
   return (
     <div>
-      <h1>Ruta App</h1>
+      <Header/>
+      <Card/>
+      <hr />
+      <DriverForm/>
+      <hr />
+      <ClientForm/>
+      <hr />
     </div>
     );
 }

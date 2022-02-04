@@ -1,6 +1,8 @@
 input[type="text"],
 input[type="email"],
-input[type="date"] {
+input[type="date"],
+select,
+checkbox {
   border: thin solid #dedede;
   border-radius: 0.25rem;
   padding: 0.75rem;

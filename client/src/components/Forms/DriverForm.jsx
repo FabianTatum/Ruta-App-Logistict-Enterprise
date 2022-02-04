@@ -8,7 +8,8 @@ const initialForm = {
     identification: "",
     dateOfBirth: "",
     phone: "",
-    email: ""
+    email: "",
+    terms: false
 }
 
 const validateForm = (form) => {
@@ -81,11 +82,10 @@ const DriverForm = () => {
         handleSubmit
     } = useForm(initialForm, validateForm)
 
-
     return ( 
         <div className='container'>
+            <h2>Formulario Conductor</h2>
             <form onSubmit={handleSubmit}>
-                <h2>Formulario Conductor</h2>
                 <input 
                     type="text" 
                     name="name" 
@@ -113,6 +113,7 @@ const DriverForm = () => {
                     value={form.identification}
                     required
                 />
+                <label htmlFor="dateOfBirth">Fecha de Nacimiento</label>
                 <input 
                     type="date" 
                     name="dateOfBirth" 
@@ -140,6 +141,17 @@ const DriverForm = () => {
                     value={form.email}
                     required
                 />
+               <br />
+                <label htmlFor="terms">Terminos y condiciones</label>
+                <input 
+                    className="form-check-input" 
+                    type="checkbox" 
+                    name="terms" 
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={form.terms}
+                />
+                <br />
                 <input type="submit" value="Enviar" />
             </form> 
         </div>

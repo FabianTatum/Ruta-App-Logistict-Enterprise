@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useForm } from '../../hooks/useForm';
 
 const initialForm = {
@@ -108,7 +108,7 @@ const ClientForm = () => {
                     value={form.password}
                     required
                 />
-                <input type="submit" value="Enviar" />
+               <input type="submit" value="Enviar" />
             </form>
         </div>
      );

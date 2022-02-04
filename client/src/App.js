@@ -1,6 +1,7 @@
 import Card from './components/Body/Card';
 import ClientForm from './components/Forms/ClientForm';
 import DriverForm from './components/Forms/DriverForm';
+import VehicleForm from './components/Forms/VehicleForm';
 import Header from './components/Header/Header'
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
       <DriverForm/>
       <hr />
       <ClientForm/>
+      <hr />
+      <VehicleForm/>
       <hr />
     </div>
     );

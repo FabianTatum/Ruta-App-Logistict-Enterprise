@@ -1,0 +1,30 @@
+{
+  "clients": [
+    {
+      "id": 1644453464706,
+      "name": "Mario Alfonso",
+      "lastName": "Suarez Castillo",
+      "email": "suarezcastillo@gmail.com",
+      "cityOfResidence": "12354354",
+      "password": "3435435345"
+    }
+  ],
+  "drivers": [
+    {
+      "id": 1644451779230,
+      "name": "Julio",
+      "lastName": "Verdager",
+      "identification": "123456789",
+      "dateOfBirth": "2022-02-14",
+      "phone": "3131234556",
+      "email": "julitoverdager@gmail.com",
+      "password": "23242342",
+      "terms": true,
+      "vehicle": [
+        {
+          "id": 111111
+        } 
+      ]
+    }
+  ]
+}

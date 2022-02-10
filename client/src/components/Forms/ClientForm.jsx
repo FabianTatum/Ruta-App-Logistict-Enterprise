@@ -1,7 +1,8 @@
 import React from 'react';
-import { useForm } from '../../hooks/useForm';
+import { useForm, useFormClient } from '../../hooks/useFormClient';
 
 const initialForm = {
+    id: null,
     name: "",
     lastName: "",
     email: "",
@@ -57,7 +58,7 @@ const ClientForm = () => {
         handleBlur,
         handleChange,
         handleSubmit
-    } = useForm(initialForm, validateForm)
+    } = useFormClient(initialForm, validateForm)
 
     return ( 
         <div className='container'>

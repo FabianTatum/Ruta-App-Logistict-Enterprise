@@ -1,14 +1,16 @@
 import React from 'react';
-import { useForm } from '../../hooks/useForm';
+import { useForm, useFormDriver } from '../../hooks/useFormDriver';
 import './DriverForm.css'
 
 const initialForm = {
+    id: null,
     name: "",
     lastName: "",
     identification: "",
     dateOfBirth: "",
     phone: "",
     email: "",
+    password: "",
     terms: false
 }
 
@@ -18,7 +20,6 @@ const validateForm = (form) => {
     let regexWords = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexNumber = /^[0-9].{1,10}$/
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexDate = /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/
 
     if(!form.name.trim()){
         errors.name = `El campo 'Nombre' es requerido`
@@ -44,14 +45,6 @@ const validateForm = (form) => {
         console.log(errors.identification)
     }
 
-    if(!form.dateOfBirth.trim()){
-        errors.dateOfBirth = `El campo 'Fecha de Nacimiento' es requerido`
-        console.log(errors.dateOfBirth)
-    }else if(!regexDate.test(form.dateOfBirth.trim())){
-        errors.dateOfBirth = `El campo 'Fecha' es incorrecto`
-        console.log(errors.dateOfBirth)
-    }
-
     if(!form.phone.trim()){
         errors.phone = `El campo 'Teléfono' es requerido`
         console.log(errors.phone)
@@ -68,6 +61,12 @@ const validateForm = (form) => {
         console.log(errors.email)
     }
 
+    if(!form.password.trim()){
+        errors.password = `El campo 'Contraseña' es requerido`
+    }else if(!regexNumber.test(form.password.trim())){
+        errors.password = `El campo 'Contraseña' es incorrecto`
+    }
+
     return errors;
 }
 
@@ -80,7 +79,7 @@ const DriverForm = () => {
         handleChange,
         handleBlur,
         handleSubmit
-    } = useForm(initialForm, validateForm)
+    } = useFormDriver(initialForm, validateForm)
 
     return ( 
         <div className='container'>
@@ -139,6 +138,15 @@ const DriverForm = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     value={form.email}
+                    required
+                />
+                <input 
+                    type="text" 
+                    name="password" 
+                    placeholder="Contraseña"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    value={form.password}
                     required
                 />
                <br />

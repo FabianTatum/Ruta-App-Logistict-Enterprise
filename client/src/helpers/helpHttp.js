@@ -2,7 +2,7 @@ export const helpHttp = () => {
     const customFetch = (endpoint, options) => {
         const defaultHeader = {
             accept: "application/json",
-            "Content-type": "application/json"
+            "Content-type": "application/json",
         }
 
         const controller = new AbortController()

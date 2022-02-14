@@ -2,12 +2,24 @@ const ClientModel = require('../models/clientModel')
 
 const ClientController = () => {}
 
-ClientController.getAll = (req, res) => {}
+ClientController.getAll = (req, res) => {
+    ClientModel.getAll(
+        (err, data) => {
+            if(err){
+                console.log("Error SQL")
+                throw err
+            }else{
+                res.json(data)
+                res.end()
+            }
+        }
+    )
+}
+
 ClientController.getOne = (req, res) => {}
 
 ClientController.insert = (req, res) => {
     let client = {
-        id: req.body.id,
         name: req.body.name,
         lastName: req.body.lastName,
         email: req.body.email,

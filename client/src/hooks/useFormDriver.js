@@ -35,13 +35,13 @@ export const useFormDriver = (initialForm, validateForm) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("Entrada")
         setErrors(validateForm(form))
         if(Object.keys(errors)){
-            form.id = Date.now() 
-            console.log(form)
-            alert("Enviando Formulario")
+            alert("Enviando Formulario Driver")
             setLoading(true)
+            if(form.id){
+                return
+            }else{
             helpHttp()
                 .post("http://localhost:3001/drivers", {
                     Accept: "aplication/json",
@@ -50,6 +50,7 @@ export const useFormDriver = (initialForm, validateForm) => {
                     setLoading(false)
                     setResponse(true)
                 })
+            }
         } else {
             return
         }

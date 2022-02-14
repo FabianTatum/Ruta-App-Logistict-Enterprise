@@ -2,7 +2,10 @@ const conn = require('./dbConnect')
 
 const ClientModel = () => {}
 
-ClientModel.getAll = () => {}
+ClientModel.getAll = (cb) => {
+    conn.query('SELECT * FROM clients', cb)
+}
+
 ClientModel.getOne = () => {}
 
 ClientModel.insert = (data, cb) => {

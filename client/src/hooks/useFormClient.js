@@ -35,11 +35,9 @@ export const useFormClient = (initialForm, validateForm) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log("Entrada")
         setErrors(validateForm(form))
         if(Object.keys(errors)){
-            form.id = Date.now()
-            alert("Enviando Formulario")
+            alert("Enviando Formulario Cliente")
             setLoading(true)
             helpHttp()
                 .post("http://localhost:3001/clients", {

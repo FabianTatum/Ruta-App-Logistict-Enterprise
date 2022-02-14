@@ -10,6 +10,7 @@ DriverController.getAll = (req, res) => {
                 throw err 
             }else{
                 res.json(data)
+                res.end()
             }
         }
     )

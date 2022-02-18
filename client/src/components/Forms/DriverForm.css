@@ -1,6 +1,7 @@
 input[type="text"],
 input[type="email"],
 input[type="date"],
+input[type="password"],
 select,
 checkbox {
   border: thin solid #dedede;

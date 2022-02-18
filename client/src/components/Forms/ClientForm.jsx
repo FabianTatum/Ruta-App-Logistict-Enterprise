@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useFormClient } from '../../hooks/useFormClient';
-import validateForm from '../../helpers/validateForm'
+import validateFormClient from '../../helpers/validateFormClient'
 
 const initialForm = {
     id: null,
@@ -11,7 +11,9 @@ const initialForm = {
     password: ""
 }
 
-const ClientForm = (entryForm = initialForm) => {
+const ClientForm = ({entryForm}) => {
+    entryForm = entryForm || initialForm
+
     const {
         form,
         response,
@@ -19,7 +21,7 @@ const ClientForm = (entryForm = initialForm) => {
         handleBlur,
         handleChange,
         handleSubmit
-    } = useFormClient(entryForm, validateForm)
+    } = useFormClient(entryForm, validateFormClient)
 
     return ( 
         <div className='container'>
@@ -62,7 +64,7 @@ const ClientForm = (entryForm = initialForm) => {
                     required
                 />
                 <input 
-                    type="text" 
+                    type="password" 
                     name="password" 
                     placeholder="Contraseña"
                     onBlur={handleBlur}

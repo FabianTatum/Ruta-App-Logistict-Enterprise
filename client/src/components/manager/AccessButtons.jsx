@@ -1,14 +1,28 @@
 
-const AccessButtons = ({ setEntity }) => {
+const AccessButtons = ({ entity, setEntity, setData }) => {
     return ( 
         <div className='container'>
                 <button 
                     className="btn btn-success" 
-                    onClick={ () => setEntity("clients")}
+                    onClick={ 
+                        () => {
+                            if(entity !== "clients"){
+                                setData([])
+                                setEntity("clients")
+                            }
+                        }
+                    }
                 >Ver Clientes</button>
                 <button 
                     className="btn btn-success" 
-                    onClick={ () => setEntity("drivers")} 
+                    onClick={
+                        () => {
+                            if(entity !== "drivers"){
+                                setData([])
+                                setEntity("drivers")
+                            }
+                        }
+                    } 
                 >Ver Conductores</button>
         </div>
      );

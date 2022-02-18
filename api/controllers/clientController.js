@@ -16,15 +16,30 @@ ClientController.getAll = (req, res) => {
     )
 }
 
-ClientController.getOne = (req, res) => {}
+ClientController.getOne = (req, res) => {
+    let id = req.params.id
+    ClientModel.getOne( id,
+        (err, data) => {
+             if(err){
+                console.log("Error SQL")
+                throw err
+            }else{
+                res.json(data)
+                res.end()
+            }
+        }
+    )
+}
 
 ClientController.insert = (req, res) => {
+    const { name, lastName, email,
+            cityOfResidence, password } = req.body
     let client = {
-        name: req.body.name,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        cityOfResidence: req.body.cityOfResidence,
-        password: req.body.password,
+        name,
+        lastName,
+        email,
+        cityOfResidence,
+        password,
     }
     ClientModel.insert(client, 
         (err) => {
@@ -38,7 +53,41 @@ ClientController.insert = (req, res) => {
     )
 }
 
-ClientController.update = (req, res) => {}
-ClientController.delete = (req, res) => {}
+ClientController.update = (req, res) => {
+    const { id, name, lastName, email, 
+        cityOfResidence, password } = req.body
+    let client = {
+        id,
+        name,
+        lastName,
+        email,
+        cityOfResidence,
+        password
+    }
+    ClientModel.update( [client, client.id],
+         (err) => {
+             if(err){
+                console.log("Error SQL")
+                throw err
+            }else{
+                res.end('Completado')
+            }
+        }
+    )
+}
+
+ClientController.delete = (req, res) => {
+    let { id } = req.params
+    ClientModel.delete( id, 
+        (err) => {
+             if(err){
+                console.log("Error SQL")
+                throw err
+            }else{
+                res.end('Borrado')
+            }
+        }
+    )
+}
 
 module.exports = ClientController

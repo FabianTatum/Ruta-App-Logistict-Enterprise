@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const morgan = require('morgan')
 
 const publicDir = express.static(`${__dirname}/public`)
-const port = (process.env.PORT || 3001)
+const port = (process.env.PORT || 5000)
 
 const routes = require('./routes/index')
 

@@ -8,9 +8,11 @@ const api = helpHttp()
 const ManagePage = () => {
     const [data, setData] = useState([])
     const [entity, setEntity] = useState(null)
+    const [deleteData, setDeleteData] = useState(null)
 
     useEffect(
         () => {
+            if(!entity) return;
             const getData = async (url) => {
                 let json = await api.get(url)
                 let arr = [];
@@ -20,16 +22,43 @@ const ManagePage = () => {
                 console.log(arr)
                 setData([...data, ...arr])
             }
-            getData(`http://localhost:3001/${entity}`)
+            getData(`http://localhost:5000/${entity}`)
     }, [entity])
+
+    useEffect(
+        () => {
+            if(!deleteData) return;
+            const sendDelete = async () => {
+                try {
+                    let isDelete = window.confirm("Esta seguro de borrar este elemento?")
+                        if(isDelete){
+                        await api.del(`http://localhost:5000/${entity}/delete/${deleteData}`)
+                        let setear = data.filter( d => d.id !== deleteData)
+                        setData(setear)
+                    }
+                } catch (err) {
+                    window.prompt('No se borraron los datos')
+                }
+            }
+            sendDelete()
+        }, [deleteData]
+    )
 
     return ( 
         <div>
-            <AccessButtons setEntity={setEntity}/>
+            <AccessButtons 
+                entity={entity}
+                setEntity={setEntity} 
+                setData={setData}
+            />
             {
-                entity === null ?
-                <h2>No hay datos</h2> :
-                <Table data={data}/> 
+                !entity ?
+                <h2>Haga click para ver listado</h2> :
+                <Table 
+                    data={data} 
+                    entity={entity}
+                    setDeleteData={setDeleteData}
+                /> 
             }
        </div>
      );

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { helpHttp } from '../helpers/helpHttp';
 
+const api = helpHttp()
+
 export const useFormDriver = (initialForm, validateForm) => {
     const [form, setForm] = useState(initialForm)
     const [response, setResponse] = useState(null)
@@ -37,20 +39,38 @@ export const useFormDriver = (initialForm, validateForm) => {
         e.preventDefault()
         setErrors(validateForm(form))
         if(Object.keys(errors)){
-            alert("Enviando Formulario Driver")
-            setLoading(true)
-            if(form.id){
-                return
-            }else{
-            helpHttp()
-                .post("http://localhost:3001/drivers", {
-                    Accept: "aplication/json",
-                    body: form 
-                }).then( res => {
-                    setLoading(false)
-                    setResponse(true)
-                })
+            const sendForm = async () => {
+                try {
+                    setLoading(true)
+                    if(!form.id){
+                        alert("Enviando Formulario Driver")
+                        let postData = await api.post("http://localhost:5000/drivers", 
+                        {
+                            Accept: "aplication/json",
+                            body: form 
+                        })
+                        if(postData){
+                            setLoading(false)
+                            setResponse(true)
+                        }
+                    }else{
+                        alert("Editando Formulario Driver")
+                        let putData = await api.put(`http://localhost:5000/drivers/edit/${form.id}`, 
+                        {
+                            Accept: "aplication/json",
+                            body: form 
+                        })
+                        if(putData){
+                            setLoading(false)
+                            setResponse(true)
+                        }
+                    }
+                } catch (err) {
+                   console.log(err) 
+                }
+            
             }
+            sendForm()
         } else {
             return
         }

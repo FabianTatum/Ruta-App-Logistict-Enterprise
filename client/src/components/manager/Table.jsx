@@ -2,7 +2,7 @@ import React from 'react';
 import Rows from './Rows'
  
 
-const Table = ({ data }) => {
+const Table = ({ data, entity, setDeleteData }) => {
     return ( 
         <div>
             <table className="table">
@@ -19,7 +19,13 @@ const Table = ({ data }) => {
                     {
                         data.length <= 0 ?
                         <tr><td>NO Existen datos</td></tr> : 
-                        data.map( d => <Rows key={d.id} data={d}/>)
+                        data.map( d => 
+                            <Rows key={`${d.id} + ${d.name}`} 
+                                data={d} 
+                                entity={entity}
+                                setDeleteData={setDeleteData}
+                            />
+                        )
                     }
                 </tbody>
             </table>

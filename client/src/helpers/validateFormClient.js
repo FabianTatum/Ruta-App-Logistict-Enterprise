@@ -1,4 +1,4 @@
-const validateForm = (form) => {
+const validateFormClient = (form) => {
     let errors = {}
 
     let regexWords = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
@@ -38,4 +38,4 @@ const validateForm = (form) => {
     return errors
 }
 
-export default validateForm
+export default validateFormClient

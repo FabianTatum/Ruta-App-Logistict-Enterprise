@@ -1,4 +1,11 @@
 .button {
-    color: #dedede;
-    text-decoration: none;
+  color: #dedede;
+  text-decoration: none;
+}
+
+.card-box {
+  margin: 10px;
+  padding: 10px 20px 5px;
+  border: medium solid black;
+  border-radius: 10px;
 }

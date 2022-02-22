@@ -1,15 +1,15 @@
-.form-driver-box {
+.form-client-box {
   margin: 10px;
   padding: 20px;
   border: medium solid black;
   border-radius: 10px;
 }
 
-.title-form-driver {
+.title-form-client {
   margin-bottom: 50px;
 }
 
-.form-driver-box input[type="text"],
+.form-client-box input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="password"],
